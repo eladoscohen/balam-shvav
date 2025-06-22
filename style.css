@@ -23,11 +23,11 @@ text-align: center;
 line-height: 1.4;
     letter-spacing: .4px;
 }
-.properties_content h3, .section_contact h5, #sectionForm p{
+.properties_content h3, .section_contact h5, #sectionForm label{
 font-size: 25px !important;
 font-weight: 600  !important;
 }
-.properties_content p, .contact_btns a p, #sectionForm p label, #sectionForm input[type="submit"]{
+.properties_content p, .contact_btns a p, #sectionForm label, #sectionForm input[type="submit"]{
 font-size: 17px  !important;
 font-weight: 300  !important; 
 }
@@ -217,7 +217,7 @@ border-radius: 10px;
 object-fit: cover;
 object-position: left;;
 }
-#sectionForm p {
+#sectionForm label {
 color: #16415F !important;
 margin: 10px 0;
 }
@@ -286,11 +286,11 @@ font-size: 24px !important;
 font-weight: 700  !important;
 text-align: center;
 }
-.properties_content h3, .section_contact h5, #sectionForm p{
+.properties_content h3, .section_contact h5, #sectionForm label{
 font-size: 22px !important;
 font-weight: 600  !important;
 }
-.properties_content p, .contact_btns a p, #sectionForm p label, #sectionForm input[type="submit"]{
+.properties_content p, .contact_btns a p, #sectionForm  label, #sectionForm input[type="submit"]{
 font-size: 17px  !important;
 font-weight: 300  !important; 
 }
