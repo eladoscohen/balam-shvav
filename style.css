@@ -28,7 +28,7 @@ font-weight: 300  !important;
 .contact_btns a p{
 font-weight: 600  !important;
 }
- h1,.main h2, .main h3{
+ *{
   font-family: "Assistant", sans-serif !important;
 }
 .balam-shvav h1{
