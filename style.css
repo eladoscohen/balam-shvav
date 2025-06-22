@@ -231,6 +231,16 @@ margin: 10px 0;
     width: 400px;
 border-radius: 10px;
 }
+
+
+#sectionForm form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
 .section_contact h4, .section_contact h5{
 color: #fff;
 }
