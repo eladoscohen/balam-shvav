@@ -8,7 +8,7 @@ body{
 font-size: 40px !important;
 font-weight: 700 !important;
 line-height: 1.4;
-    letter-spacing: .4px;
+ letter-spacing: .4px;
 }
 .balam-shvav h2, .main-subtitle, .section_contact h4{
 font-size: 30px !important;
@@ -28,7 +28,7 @@ font-weight: 300  !important;
 .contact_btns a p{
 font-weight: 600  !important;
 }
-.main h1,.main h2, .main h3{
+ h1,.main h2, .main h3{
   font-family: "Assistant", sans-serif !important;
 }
 .balam-shvav h1{
