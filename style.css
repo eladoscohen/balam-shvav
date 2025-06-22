@@ -23,7 +23,7 @@ text-align: center;
 line-height: 1.4;
     letter-spacing: .4px;
 }
-.properties_content h3, .section_contact h5, #sectionForm label{
+.properties_content h3, .section_contact h5, #sectionForm label, .balam-shvav .contact-title{
 font-size: 25px !important;
 font-weight: 600  !important;
 }
@@ -220,6 +220,7 @@ object-position: left;;
 #sectionForm label {
 color: #16415F !important;
 margin: 10px 0;
+display: inline-block;
 }
 #sectionForm form{
         direction: rtl;
@@ -244,8 +245,7 @@ border-radius: 10px;
 .section_contact h4, .section_contact h5{
 color: #fff;
 }
-.contact-title{
-    color: #fff;
+.balam-shvav .contact-title{
     font-size: 18px;
     text-align: center;
 }
@@ -286,7 +286,7 @@ font-size: 24px !important;
 font-weight: 700  !important;
 text-align: center;
 }
-.properties_content h3, .section_contact h5, #sectionForm label{
+.properties_content h3, .section_contact h5, #sectionForm label, .balam-shvav .contact-title{
 font-size: 22px !important;
 font-weight: 600  !important;
 }
