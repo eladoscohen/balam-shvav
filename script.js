@@ -1,3 +1,5 @@
+ /* Slideshow */
+
  $('.properties_slider').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -18,6 +20,7 @@
     });
 
 
+    /* Form */
 
 document.getElementById('contact-form').onsubmit = async (e) => {
   e.preventDefault();
