@@ -247,6 +247,8 @@ color: #fff;
 .balam-shvav .contact-title{
     font-size: 18px;
     text-align: center;
+    color: #16415F !important;
+
 }
 #sectionForm input[type="submit"]{
 background: #16415F;
