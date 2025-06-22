@@ -4,6 +4,9 @@ body{
 .main{
     direction: rtl;
 }
+.slick-list{
+    direction: ltr;
+}
 .balam-shvav h1{
 font-size: 40px !important;
 font-weight: 700 !important;
