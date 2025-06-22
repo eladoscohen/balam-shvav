@@ -49,6 +49,9 @@
   <link rel="stylesheet" href="./style.css"> 
  <script src="script.js" defer></script>
 
+   <script src="https://www.google.com/recaptcha/api.js?render=6Lebs2krAAAAANPvZI7JSobGiU8q0TmOSHlAvNdE"></script>
+
+
 </head>
 <body>
 <div class="balam-shvav">
@@ -171,7 +174,14 @@
 
 <div id="sectionForm">
 <img src="./images/form-bg.webp" />
-[contact-form-7 id="751eef3" title="Contact form 1"]
+<form id="contact-form">
+  <input name="name" required>
+  <input type="email" name="email" required>
+  <input name="phone" pattern="^[0-9+()\-\\s]+$" required>
+  <textarea name="message"></textarea>
+  <input type="file" name="file" accept=".pdf,.doc,.docx,image/*" required>
+  <button type="submit">Send</button>
+</form>
 </div>
 
 </main>
