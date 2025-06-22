@@ -8,7 +8,7 @@ body{
     direction: ltr;
 }
 .slick-arrow{
-    display: none;
+    display: none !important;
 }
 .balam-shvav h1{
 font-size: 40px !important;
