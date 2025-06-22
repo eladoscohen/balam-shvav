@@ -177,12 +177,22 @@
 <div id="sectionForm">
 <img src="./images/form-bg.webp" />
 <form id="contact-form">
-    <p class="contact-title">מלאו את הפרטיםל שלכם ונחזור אליכם בהקדם</p>
-  <input name="name" required>
-  <input type="email" name="email" required>
-  <input name="phone" pattern="^[0-9+()\-\\s]+$" required>
-  <textarea name="message"></textarea>
-  <input type="file" name="file" accept=".pdf,.doc,.docx,image/*" required>
+    <p class="contact-title">מלאו את הפרטים שלכם ונחזור אליכם בהקדם</p>
+    <label for="name">שם *</label>
+  <input name="name" id="name" required>
+
+      <label for="email">אימייל *</label>
+  <input type="email" id="email" name="email" required>
+
+      <label for="phone">טלפון *</label>
+  <input name="phone" id="phone" pattern="^[0-9+()\-\\s]+$" required>
+
+      <label for="message">הודעה (אופציונלי) *</label>
+  <textarea name="message" id="message"></textarea>
+
+        <label for="file">העלאת קובץ (אופציונלי) *</label>
+
+  <input type="file" id="file" name="file" accept=".pdf,.doc,.docx,image/*" required>
   <button type="submit">Send</button>
 </form>
 </div>
