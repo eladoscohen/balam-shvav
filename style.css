@@ -77,7 +77,7 @@ margin: 0;
 }
 .balam-shvav .main-banner{
 width: 100%;
-background: url('http://kvutsatech.com/wp-content/uploads/2025/04/באנר-ראשי-scaled.jpg');
+background: url('./images/main-banner.webp');
 background-size: cover;
 background-position: center;
 height: 270px;
@@ -165,7 +165,7 @@ padding: 30px 0;
 
 }
 .contact_bg{
-background: url('http://kvutsatech.com/wp-content/uploads/2024/05/shutterstock_2272285161.jpg');
+background: url('./images/contact-bg.webp');
 
 }
 .contact_btns{
