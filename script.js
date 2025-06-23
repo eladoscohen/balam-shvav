@@ -82,20 +82,22 @@
   };
 
   async function sendForm(payload, statusBox, form) {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbxizMRjxMdC_BxQ8yU5jUL7nfiPGF0DiVxIAfs2S12txwrk9X2tVR3RFOaFwBy-GGf5bQ/exec", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: { "Content-Type": "application/json" }
-    });
-
-    const json = await res.json();
-
-    if (json.success) {
-      statusBox.style.color = "green";
-      statusBox.textContent = ":הטופס נשלח בהצלחה";
-      form.reset();
-    } else {
-      statusBox.style.color = "red";
-      statusBox.textContent = "שגיאה בשליחה: " + (json.error || "נסה שוב מאוחר יותר");
+  const res = await fetch("https://script.google.com/macros/s/AKfycbxizMRjxMdC_BxQ8yU5jUL7nfiPGF0DiVxIAfs2S12txwrk9X2tVR3RFOaFwBy-GGf5bQ/exec", {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: {
+      "Content-Type": "text/plain" // ✅ prevents CORS preflight
     }
+  });
+
+  const json = await res.json();
+
+  if (json.success) {
+    statusBox.style.color = "green";
+    statusBox.textContent = ":הטופס נשלח בהצלחה";
+    form.reset();
+  } else {
+    statusBox.style.color = "red";
+    statusBox.textContent = "שגיאה בשליחה: " + (json.error || "נסה שוב מאוחר יותר");
   }
+}
