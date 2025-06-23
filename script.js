@@ -103,6 +103,10 @@ async function sendForm(payload, statusBox, form) {
       console.log("✅ Blob created:", fileBlob);
 
       data.append("file", fileBlob, payload.filename);
+
+      for (let [key, value] of data.entries()) {
+  console.log(`📝 ${key}:`, value);
+}
     } catch (err) {
       console.error("❌ Error building file blob:", err);
     }
