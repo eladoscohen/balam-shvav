@@ -355,7 +355,7 @@ word-wrap: break-word;   /* allows long words to break */
     text-align: center;
     padding: 10px 0;
 }
-#form-status.sucess{
+#form-status.success{
     color: #16415F;
     border: 1px solid #16415F;
 }
