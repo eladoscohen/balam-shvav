@@ -345,6 +345,6 @@ word-wrap: break-word;   /* allows long words to break */
 
 }
 
-.grecaptcha-logo{
+.grecaptcha-badge{
   display: none !important;
 }
