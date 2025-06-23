@@ -22,52 +22,71 @@
 
     /* Form */
 
-document.getElementById('contact-form').onsubmit = async (e) => {
-  e.preventDefault();
+      document.getElementById('contact-form').onsubmit = async (e) => {
+    e.preventDefault();
 
-  const form = e.target;
-  if (!form.checkValidity()) {
-    form.reportValidity();
-    return;
-  }
+    const form = e.target;
+    const statusBox = document.getElementById('form-status');
+    statusBox.textContent = '';
 
-  grecaptcha.ready(() => {
-    grecaptcha.execute('6Lebs2krAAAAANPvZI7JSobGiU8q0TmOSHlAvNdE', { action: 'submit' }).then(async (token) => {
-      const file = form.file.files[0];
-      const reader = new FileReader();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
 
-      reader.onload = async () => {
-        const base64 = btoa([...new Uint8Array(reader.result)]
-          .map(b => String.fromCharCode(b)).join(''));
+    grecaptcha.ready(() => {
+      grecaptcha.execute('6Lebs2krAAAAANPvZI7JSobGiU8q0TmOSHlAvNdE', { action: 'submit' })
+        .then(async (token) => {
+          const file = form.file.files[0];
 
-        const payload = {
-          name: form.name.value,
-          email: form.email.value,
-          phone: form.phone.value,
-          message: form.message.value,
-          filename: file.name,
-          mimetype: file.type,
-          filedata: base64,
-          recaptcha: token  // ✅ Pass token to backend
-        };
+          if (file) {
+            const reader = new FileReader();
 
-        const res = await fetch("https://script.google.com/macros/s/AKfycbywLZ8S4eNEJQ1-S8CuwhhBJkmcO27AN5HEieguKX6uWJq752I8WJ2O3vhS2qJfRYkWkA/exec", {
-          method: "POST",
-          body: JSON.stringify(payload),
-          headers: { "Content-Type": "application/json" }
-        });
+            reader.onload = async () => {
+              const base64 = btoa([...new Uint8Array(reader.result)]
+                .map(b => String.fromCharCode(b)).join(''));
 
-        const json = await res.json();
-        alert(json.success ? "✅ Sent!" : "❌ Error: " + json.error);
-      };
+              await sendForm({
+                name: form.name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                message: form.message.value,
+                filename: file.name,
+                mimetype: file.type,
+                filedata: base64,
+                recaptcha: token
+              }, statusBox, form);
+            };
 
-                if (!file) {
-            alert("❗ Please select a file.");
-            return;
+            reader.readAsArrayBuffer(file);
+          } else {
+            await sendForm({
+              name: form.name.value,
+              email: form.email.value,
+              phone: form.phone.value,
+              message: form.message.value,
+              recaptcha: token
+            }, statusBox, form);
           }
-
-          reader.readAsArrayBuffer(file);
-          
+        });
     });
-  });
-};
+  };
+
+  async function sendForm(payload, statusBox, form) {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbywLZ8S4eNEJQ1-S8CuwhhBJkmcO27AN5HEieguKX6uWJq752I8WJ2O3vhS2qJfRYkWkA/exec", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: { "Content-Type": "application/json" }
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      statusBox.style.color = "green";
+      statusBox.textContent = ":הטופס נשלח בהצלחה";
+      form.reset();
+    } else {
+      statusBox.style.color = "red";
+      statusBox.textContent = "שגיאה בשליחה: " + (json.error || "נסה שוב מאוחר יותר");
+    }
+  }
