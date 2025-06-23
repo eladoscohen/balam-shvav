@@ -107,8 +107,7 @@ async function sendForm(payload, statusBox, form) {
   const text = await res.text();
 
   if (res.ok && /success/i.test(text)) {
-    statusBox.style.color = "green";
-    statusBox.textContent = ":הטופס נשלח בהצלחה";
+    statusBox.textContent = "הטופס נשלח בהצלחה";
     form.reset();
   } else {
     statusBox.style.color = "red";
