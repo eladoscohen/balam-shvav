@@ -82,7 +82,7 @@
   };
 
   async function sendForm(payload, statusBox, form) {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbywLZ8S4eNEJQ1-S8CuwhhBJkmcO27AN5HEieguKX6uWJq752I8WJ2O3vhS2qJfRYkWkA/exec", {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbxizMRjxMdC_BxQ8yU5jUL7nfiPGF0DiVxIAfs2S12txwrk9X2tVR3RFOaFwBy-GGf5bQ/exec", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: { "Content-Type": "application/json" }
