@@ -344,3 +344,7 @@ word-wrap: break-word;   /* allows long words to break */
 
 
 }
+
+.grecaptcha-logo{
+  display: none !important;
+}
