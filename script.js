@@ -59,7 +59,7 @@
     data.append("g-recaptcha-response", recaptchaToken);
 
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbzhPD0K3hzUmSHDo9wVdMyrWc0arAVcQHDvHq-5BJ1uHr-KIhUiRs63n-t78D1ewFvd9A/exec", {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbwmq2x2f4vkITQyZTbQ1MlhszRL0K-Vnz_6hIza1OLPveRNAObXE3AxRpWqSoLFdGmyyA/exec", {
         method: "POST",
         body: data
       });
