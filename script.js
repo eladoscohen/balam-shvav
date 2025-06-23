@@ -26,8 +26,17 @@
     e.preventDefault();
 
     const form = e.target;
+      const phoneInput = form.phone.value.trim();
     const statusBox = document.getElementById('form-status');
     statusBox.textContent = '';
+
+     // Validate phone with JS
+  const intlRegex = /^\+?[\d\s().-]{7,20}$/;
+  if (!intlRegex.test(phoneInput)) {
+    statusBox.style.color = 'red';
+    statusBox.textContent = '❌ אנא הזן מספר טלפון תקין.';
+    return;
+  }
 
     if (!form.checkValidity()) {
       form.reportValidity();
