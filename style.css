@@ -284,6 +284,10 @@ display: none;
 }
 .header-contacts h1{
   display: block;
+  text-align: center;
+}
+.header-contacts .icon{
+  flex: 1;
 }
 .header-logo img{
 width: 130px;
