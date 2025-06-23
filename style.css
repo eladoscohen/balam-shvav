@@ -352,8 +352,14 @@ word-wrap: break-word;   /* allows long words to break */
 #form-status{
   margin-top: 1rem;
     font-weight: bold;
-    color: #16415F;
-    border: 1px solid #16415F;
     text-align: center;
     padding: 10px 0;
+}
+#form-status.sucess{
+    color: #16415F;
+    border: 1px solid #16415F;
+}
+#form-status.error{
+    color: red;
+    border: 1px solid red;
 }

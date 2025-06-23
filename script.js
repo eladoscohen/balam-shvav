@@ -105,12 +105,15 @@ async function sendForm(payload, statusBox, form) {
   });
 
   const text = await res.text();
+  // ✅ Clear previous state
+  statusBox.classList.remove("success", "error");
 
   if (res.ok && /success/i.test(text)) {
+    statusBox.classList.add("success");
     statusBox.textContent = "הטופס נשלח בהצלחה";
     form.reset();
   } else {
-    statusBox.style.color = "red";
+    statusBox.classList.add("error");
     statusBox.textContent = "שגיאה בשליחה: " + text;
   }
 }
