@@ -81,23 +81,47 @@
     });
   };
 
-  async function sendForm(payload, statusBox, form) {
-  const res = await fetch("https://script.google.com/macros/s/AKfycbwjAUiO1mKFMVIsE1lmA4B8ZdW-pdXCkTAgTdewEE_XiUYL9ec9Qb21zZlhc1WFYNWevA/exec", {
-    method: "POST",
-    body: JSON.stringify(payload),
-    headers: {
-      "Content-Type": "text/plain" // ✅ prevents CORS preflight
+async function sendForm(payload, statusBox, form) {
+  console.log("🔄 Starting form submission...");
+  console.log("📦 Payload:", payload);
+
+  try {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbwjAUiO1mKFMVIsE1lmA4B8ZdW-pdXCkTAgTdewEE_XiUYL9ec9Qb21zZlhc1WFYNWevA/exec", {
+      method: "POST",
+      headers: {
+        "Content-Type": "text/plain" // avoids preflight and keeps things CORS-safe
+      },
+      body: JSON.stringify(payload)
+    });
+
+    console.log("✅ Response received. Status:", response.status);
+
+    const contentType = response.headers.get("Content-Type");
+    console.log("📨 Response Content-Type:", contentType);
+
+    if (!response.ok) {
+      console.error("❌ HTTP Error:", response.status, response.statusText);
+      statusBox.style.color = "red";
+      statusBox.textContent = "שגיאה בשליחה: שגיאת שרת (HTTP " + response.status + ")";
+      return;
     }
-  });
 
-  const json = await res.json();
+    const json = await response.json();
+    console.log("📨 Parsed JSON:", json);
 
-  if (json.success) {
-    statusBox.style.color = "green";
-    statusBox.textContent = ":הטופס נשלח בהצלחה";
-    form.reset();
-  } else {
+    if (json.success) {
+      statusBox.style.color = "green";
+      statusBox.textContent = ":הטופס נשלח בהצלחה";
+      form.reset();
+    } else {
+      statusBox.style.color = "red";
+      statusBox.textContent = "שגיאה בשליחה: " + (json.error || "נסה שוב מאוחר יותר");
+    }
+
+  } catch (err) {
+    console.error("❗ Fetch failed:", err);
     statusBox.style.color = "red";
-    statusBox.textContent = "שגיאה בשליחה: " + (json.error || "נסה שוב מאוחר יותר");
+    statusBox.textContent = "שגיאה בשליחה: בעיית חיבור או שרת";
   }
 }
+
