@@ -267,16 +267,24 @@ color: #fff;
 padding: 20px 0;
 margin-top: 40px;
 }
-
+.header-contacts h1{
+  display: none;
+}
 @media screen and (max-width: 700px){
 
 .header-logo{
 order: 1;
 }
 .header-title{
-order: 2;
+display: none;
 }
 
+.header-contacts{
+  flex-wrap: wrap;
+}
+.header-contacts h1{
+  display: block;
+}
 .header-logo img{
 width: 120px;
 }
