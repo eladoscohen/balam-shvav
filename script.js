@@ -98,7 +98,7 @@ async function sendForm(payload, statusBox, form) {
     data.append("file", fileBlob, payload.filename);
   }
 
-  const res = await fetch("https://script.google.com/macros/s/AKfycbwdavmerfWQpIjXBNcq6Zwo_TtRMR8jAGARL8aV5YeBSprhXm9fKdh8tjnQSPZtSaw7fg/exec", {
+  const res = await fetch("https://script.google.com/macros/s/AKfycbwzhoMHWIYG9HRO7V6dNT0PsAUOqeMVe4J6u8ifZd7cQ0RrS3OHse6_v5WrBPwMBNgzVg/exec", {
     method: "POST",
     body: data
     // no headers
