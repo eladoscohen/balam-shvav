@@ -83,28 +83,62 @@
 
 
 async function sendForm(payload, statusBox, form) {
-  console.log("🔧 Sending JSON payload:", payload);
+  console.log("🔧 Starting sendForm with payload:", payload);
 
-  const res = await fetch("https://script.google.com/macros/s/AKfycbyqHbUwaQPHeHWSfZmHiH2dJxgKVddKIy0piqq6NCLPhD27-KEQaMwg4a1xrVYWi0yySg/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json" // 🔁 Match the backend test expectations
-    },
-    body: JSON.stringify(payload)
-  });
+  const data = new FormData();
+  data.append("name", payload.name);
+  data.append("email", payload.email);
+  data.append("phone", payload.phone);
+  data.append("message", payload.message || '');
+  data.append("g-recaptcha-response", payload.recaptcha);
 
-  const text = await res.text();
-  console.log("📩 Server response:", text);
+  if (payload.filename && payload.filedata && payload.mimetype) {
+    console.log("📎 File data present, preparing Blob...");
+    try {
+      const byteCharacters = atob(payload.filedata);
+      const byteNumbers = Array.from(byteCharacters, c => c.charCodeAt(0));
+      const byteArray = new Uint8Array(byteNumbers);
+      const fileBlob = new Blob([byteArray], { type: payload.mimetype });
 
-  statusBox.classList.remove("success", "error");
+      console.log("✅ Blob created:", fileBlob);
 
-  if (res.ok && /success/i.test(text)) {
-    statusBox.classList.add("success");
-    statusBox.textContent = "הטופס נשלח בהצלחה";
-    form.reset();
+      data.append("file", fileBlob, payload.filename);
+
+      for (let [key, value] of data.entries()) {
+  console.log(`📝 ${key}:`, value);
+}
+    } catch (err) {
+      console.error("❌ Error building file blob:", err);
+    }
   } else {
+    console.warn("⚠️ No file attached or missing data");
+  }
+
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbzhPD0K3hzUmSHDo9wVdMyrWc0arAVcQHDvHq-5BJ1uHr-KIhUiRs63n-t78D1ewFvd9A/exec", {
+      method: "POST",
+      body: data
+      // No headers on purpose for FormData
+    });
+
+    const text = await res.text();
+    console.log("📩 Server response:", text);
+
+    // Clear previous state
+    statusBox.classList.remove("success", "error");
+
+    if (res.ok && /success/i.test(text)) {
+      statusBox.classList.add("success");
+      statusBox.textContent = "הטופס נשלח בהצלחה";
+      form.reset();
+    } else {
+      statusBox.classList.add("error");
+      statusBox.textContent = "שגיאה בשליחה: " + text;
+    }
+  } catch (err) {
+    console.error("❌ Fetch failed:", err);
     statusBox.classList.add("error");
-    statusBox.textContent = "שגיאה בשליחה: " + text;
+    statusBox.textContent = "שגיאה בשליחה: בעיית תקשורת עם השרת";
   }
 }
 
