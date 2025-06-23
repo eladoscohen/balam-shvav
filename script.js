@@ -81,3 +81,24 @@
       statusBox.textContent = "שגיאה בשליחה: בעיית תקשורת עם השרת";
     }
   }
+
+
+  /* Fade up animation */
+  document.addEventListener("DOMContentLoaded", () => {
+    const fadeUps = document.querySelectorAll('.fade-up');
+    const offset = 100; // Customize this offset (px) before element enters viewport
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: `0px 0px -${offset}px 0px`,
+      threshold: 0
+    });
+
+    fadeUps.forEach(el => observer.observe(el));
+  });

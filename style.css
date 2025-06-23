@@ -286,6 +286,7 @@ display: none;
 .header-contacts h1{
   display: block;
   text-align: center;
+  margin: 0;
 }
 .header-contacts .icon{
   flex: 1;
@@ -377,4 +378,15 @@ word-wrap: break-word;   /* allows long words to break */
 #form-status.error{
     color: red;
     border: 1px solid red;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
