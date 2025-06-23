@@ -86,7 +86,7 @@ async function sendForm(payload, statusBox, form) {
   console.log("📦 Payload:", payload);
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbwjAUiO1mKFMVIsE1lmA4B8ZdW-pdXCkTAgTdewEE_XiUYL9ec9Qb21zZlhc1WFYNWevA/exec", {
+    const response = await fetch("https://script.google.com/macros/s/AKfycbzWCufAW0qOhjpLXKF8F42hxf-A5Br2nxpChWOhXPvqwD5qrnb2O-J-yPgduIcr4J6nHQ/exec", {
       method: "POST",
       headers: {
         "Content-Type": "text/plain" // avoids preflight and keeps things CORS-safe
