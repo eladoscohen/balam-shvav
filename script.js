@@ -115,7 +115,7 @@ async function sendForm(payload, statusBox, form) {
   }
 
   try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbwzhoMHWIYG9HRO7V6dNT0PsAUOqeMVe4J6u8ifZd7cQ0RrS3OHse6_v5WrBPwMBNgzVg/exec", {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbxArsPvtkdP73GEmSTOGGc9P7bFvy5aCZ7jZEp5ftFtLpMUSYfWEVK4gSOsQu5MW03FfA/exec", {
       method: "POST",
       body: data
       // No headers on purpose for FormData
