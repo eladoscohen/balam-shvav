@@ -83,6 +83,8 @@
 
 
 async function sendForm(payload, statusBox, form) {
+  console.log("🔧 Starting sendForm with payload:", payload);
+
   const data = new FormData();
   data.append("name", payload.name);
   data.append("email", payload.email);
@@ -91,29 +93,49 @@ async function sendForm(payload, statusBox, form) {
   data.append("g-recaptcha-response", payload.recaptcha);
 
   if (payload.filename && payload.filedata && payload.mimetype) {
-    const byteCharacters = atob(payload.filedata);
-    const byteNumbers = Array.from(byteCharacters, c => c.charCodeAt(0));
-    const byteArray = new Uint8Array(byteNumbers);
-    const fileBlob = new Blob([byteArray], { type: payload.mimetype });
-    data.append("file", fileBlob, payload.filename);
+    console.log("📎 File data present, preparing Blob...");
+    try {
+      const byteCharacters = atob(payload.filedata);
+      const byteNumbers = Array.from(byteCharacters, c => c.charCodeAt(0));
+      const byteArray = new Uint8Array(byteNumbers);
+      const fileBlob = new Blob([byteArray], { type: payload.mimetype });
+
+      console.log("✅ Blob created:", fileBlob);
+
+      data.append("file", fileBlob, payload.filename);
+    } catch (err) {
+      console.error("❌ Error building file blob:", err);
+    }
+  } else {
+    console.warn("⚠️ No file attached or missing data");
   }
 
-  const res = await fetch("https://script.google.com/macros/s/AKfycbwzhoMHWIYG9HRO7V6dNT0PsAUOqeMVe4J6u8ifZd7cQ0RrS3OHse6_v5WrBPwMBNgzVg/exec", {
-    method: "POST",
-    body: data
-    // no headers
-  });
+  try {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbwzhoMHWIYG9HRO7V6dNT0PsAUOqeMVe4J6u8ifZd7cQ0RrS3OHse6_v5WrBPwMBNgzVg/exec", {
+      method: "POST",
+      body: data
+      // No headers on purpose for FormData
+    });
 
-  const text = await res.text();
-  // ✅ Clear previous state
-  statusBox.classList.remove("success", "error");
+    const text = await res.text();
+    console.log("📩 Server response:", text);
 
-  if (res.ok && /success/i.test(text)) {
-    statusBox.classList.add("success");
-    statusBox.textContent = "הטופס נשלח בהצלחה";
-    form.reset();
-  } else {
+    // Clear previous state
+    statusBox.classList.remove("success", "error");
+
+    if (res.ok && /success/i.test(text)) {
+      statusBox.classList.add("success");
+      statusBox.textContent = "הטופס נשלח בהצלחה";
+      form.reset();
+    } else {
+      statusBox.classList.add("error");
+      statusBox.textContent = "שגיאה בשליחה: " + text;
+    }
+  } catch (err) {
+    console.error("❌ Fetch failed:", err);
     statusBox.classList.add("error");
-    statusBox.textContent = "שגיאה בשליחה: " + text;
+    statusBox.textContent = "שגיאה בשליחה: בעיית תקשורת עם השרת";
   }
 }
+
+
