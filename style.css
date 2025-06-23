@@ -276,6 +276,10 @@ order: 1;
 .header-title{
 order: 2;
 }
+
+.header-logo img{
+width: 120px;
+}
 .balam-shvav h1{
 font-size: 30px !important;
 font-weight: 700 !important;
