@@ -61,7 +61,13 @@ document.getElementById('contact-form').onsubmit = async (e) => {
         alert(json.success ? "✅ Sent!" : "❌ Error: " + json.error);
       };
 
-      reader.readAsArrayBuffer(file);
+                if (!file) {
+            alert("❗ Please select a file.");
+            return;
+          }
+
+          reader.readAsArrayBuffer(file);
+          
     });
   });
 };
