@@ -81,47 +81,37 @@
     });
   };
 
+
 async function sendForm(payload, statusBox, form) {
-  console.log("🔄 Starting form submission...");
-  console.log("📦 Payload:", payload);
+  const data = new FormData();
+  data.append("name", payload.name);
+  data.append("email", payload.email);
+  data.append("phone", payload.phone);
+  data.append("message", payload.message || '');
+  data.append("g-recaptcha-response", payload.recaptcha);
 
-  try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbzWCufAW0qOhjpLXKF8F42hxf-A5Br2nxpChWOhXPvqwD5qrnb2O-J-yPgduIcr4J6nHQ/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "text/plain" // avoids preflight and keeps things CORS-safe
-      },
-      body: JSON.stringify(payload)
-    });
+  if (payload.filename && payload.filedata && payload.mimetype) {
+    const byteCharacters = atob(payload.filedata);
+    const byteNumbers = Array.from(byteCharacters, c => c.charCodeAt(0));
+    const byteArray = new Uint8Array(byteNumbers);
+    const fileBlob = new Blob([byteArray], { type: payload.mimetype });
+    data.append("file", fileBlob, payload.filename);
+  }
 
-    console.log("✅ Response received. Status:", response.status);
+  const res = await fetch("https://script.google.com/macros/s/AKfycbwdavmerfWQpIjXBNcq6Zwo_TtRMR8jAGARL8aV5YeBSprhXm9fKdh8tjnQSPZtSaw7fg/exec", {
+    method: "POST",
+    body: data
+    // no headers
+  });
 
-    const contentType = response.headers.get("Content-Type");
-    console.log("📨 Response Content-Type:", contentType);
+  const text = await res.text();
 
-    if (!response.ok) {
-      console.error("❌ HTTP Error:", response.status, response.statusText);
-      statusBox.style.color = "red";
-      statusBox.textContent = "שגיאה בשליחה: שגיאת שרת (HTTP " + response.status + ")";
-      return;
-    }
-
-    const json = await response.json();
-    console.log("📨 Parsed JSON:", json);
-
-    if (json.success) {
-      statusBox.style.color = "green";
-      statusBox.textContent = ":הטופס נשלח בהצלחה";
-      form.reset();
-    } else {
-      statusBox.style.color = "red";
-      statusBox.textContent = "שגיאה בשליחה: " + (json.error || "נסה שוב מאוחר יותר");
-    }
-
-  } catch (err) {
-    console.error("❗ Fetch failed:", err);
+  if (res.ok && /success/i.test(text)) {
+    statusBox.style.color = "green";
+    statusBox.textContent = ":הטופס נשלח בהצלחה";
+    form.reset();
+  } else {
     statusBox.style.color = "red";
-    statusBox.textContent = "שגיאה בשליחה: בעיית חיבור או שרת";
+    statusBox.textContent = "שגיאה בשליחה: " + text;
   }
 }
-
