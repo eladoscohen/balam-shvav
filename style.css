@@ -37,9 +37,7 @@ font-weight: 600  !important;
  *{
   font-family: "Assistant", sans-serif !important;
 }
-.balam-shvav h1{
-color: #16415F;
-}
+
 .balam-shvav .header{
 display: flex;
 width: 90%;
@@ -76,6 +74,7 @@ width: 150px;
   height: 48px;
   text-decoration: none;
   transition: all 0.3s ease;
+      filter: grayscale(1);
 }
 
 .icon img{
