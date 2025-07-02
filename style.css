@@ -40,13 +40,16 @@ font-weight: 600  !important;
 
 .balam-shvav .header{
 display: flex;
-width: 90%;
-max-width: 90%;
+width: 100%;
+max-width: 100%;
+padding: 0 5%;
 margin: 0 auto;
 align-items: center;
 padding: 7px 0;
 justify-content: space-between;
 flex-wrap: wrap;
+background-color: #222222	;
+color: #000;
 }
 .balam-shvav{
 width: 100%;
