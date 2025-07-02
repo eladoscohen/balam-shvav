@@ -37,16 +37,20 @@ font-weight: 600  !important;
  *{
   font-family: "Assistant", sans-serif !important;
 }
-
-.balam-shvav .header{
-display: flex;
+.header-cont{
 width: 100%;
 max-width: 100%;
+background-color: #222222	;
+
+}
+.balam-shvav .header{
+display: flex;
+width: 90%;
+max-width: 90%;
 margin: 0 auto;
 align-items: center;
 justify-content: space-between;
 flex-wrap: wrap;
-background-color: #222222	;
 color: #fff;
 }
 .balam-shvav{
