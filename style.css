@@ -81,6 +81,8 @@ width: 150px;
 .icon img{
 width: 100%;
 margin: 0;
+  filter: brightness(0) invert(1);
+
 }
 .balam-shvav .main-banner{
 width: 100%;
