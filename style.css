@@ -152,7 +152,7 @@ position: relative;
 padding-right: 30px;
 line-height: 1.4;
 }
-.properties_content p::before {
+.properties_content:not(.video-cont .properties_content) p::before {
     content: "✔";
     position: absolute;
     right: 0;
