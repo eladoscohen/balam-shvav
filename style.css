@@ -120,13 +120,16 @@ z-index: 2;
 display: flex;
 width: 100%;
 }
-.properties_slider, .properties_content{
+.video .properties-cont{
+  flex-direction: row-reverse;
+}
+.properties_slider, .properties_content, .video-cont{
 width: 50%;
 }
 .balam-shvav p{
 color: #1c1c1c;
 }
-.properties_slider {
+.properties_slider, .video-cont {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
