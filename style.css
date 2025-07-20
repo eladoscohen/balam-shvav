@@ -331,9 +331,11 @@ flex-direction: column-reverse;
 .properties_slider, .properties_content , .video-cont{
     width: 100%;
 }
+.video-cont{
+  margin-bottom: 30px;
+}
 .video-cont video{
   width: 100%;
-  margin-bottom: 30px;
 }
 .properties_content{
 padding: 0 5%;
