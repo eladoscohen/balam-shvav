@@ -363,7 +363,9 @@ padding: 25px 0;
 text-align: center;
 }
 .section_contact {
-max-width: 100%;
+max-width: 95%;
+padding: 30px 2.5%;
+
 }
 .contact_btns .card{
 padding: 10px;
