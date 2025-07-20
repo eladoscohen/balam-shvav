@@ -328,10 +328,10 @@ font-weight: 600  !important;
 .properties-cont, .video .properties-cont{
 flex-direction: column-reverse;
 }
-.properties_slider, .properties_content {
+.properties_slider, .properties_content , .video-cont{
     width: 100%;
 }
-.properties_content, .video-cont{
+.properties_content{
 padding: 0 5%;
 width: 90%;
 }
