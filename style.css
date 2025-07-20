@@ -325,13 +325,13 @@ font-weight: 300  !important;
 font-weight: 600  !important;
 }
 
-.properties-cont{
+.properties-cont, .video .properties-cont{
 flex-direction: column-reverse;
 }
 .properties_slider, .properties_content {
     width: 100%;
 }
-.properties_content{
+.properties_content, .video-cont{
 padding: 0 5%;
 width: 90%;
 }
