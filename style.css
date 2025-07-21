@@ -139,7 +139,7 @@ height: 100%;
 }
 .properties_slider img {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block !important;
   border-radius: inherit;
   object-fit: contain;
