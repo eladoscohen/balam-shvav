@@ -189,7 +189,7 @@ margin-right: auto;
 margin-left: auto;
 }
 .section_contact{
-width: 1000px;
+width: 1200px;
 max-width: 85%;
 margin: 60px auto;
 padding: 30px 0;
@@ -202,10 +202,11 @@ background: url('./images/contact-bg.webp');
 .contact_btns{
 display: flex;
 flex-wrap: wrap;
-justify-content: space-evenly;
+justify-content: center;
+gap: 2%;
 }
 .contact_btns .card{
- width: 32%;
+ width: 30%;
 margin-bottom: 20px;
 text-align: center;
 border: 2px solid #16415F;
