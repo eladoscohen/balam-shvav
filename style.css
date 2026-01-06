@@ -192,6 +192,7 @@ margin-left: auto;
 width: 1200px;
 max-width: 85%;
 margin: 60px auto;
+margin-bottom: 0;
 padding: 30px 0;
 
 }
@@ -384,7 +385,7 @@ padding: 30px 2.5%;
 }
 .contact_btns .card{
 padding: 10px;
-width: 40%;
+width: 50%;
 }
 .contact_btns a p{
 word-wrap: break-word;   /* allows long words to break */
