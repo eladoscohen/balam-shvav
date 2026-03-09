@@ -424,3 +424,6 @@ word-wrap: break-word;   /* allows long words to break */
   opacity: 1;
   transform: translateY(0);
 }
+.slick-list.draggable{
+  height: auto !important;
+}
